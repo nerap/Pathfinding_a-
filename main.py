@@ -29,6 +29,7 @@ def maze_launch(current_maze, start, end):
 
 
 if __name__ == "__main__":
+
     with open('./Grid/grid.json') as grid:
         maze = json.load(grid)
 

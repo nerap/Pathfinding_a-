@@ -28,8 +28,8 @@ def maze_launch(current_maze, start, end):
     Returns :
         maze_pathed : The maze with the path to the end
     """
-    path_maze = []
-    return path_maze
+
+    pass
 
 
 if __name__ == "__main__":
@@ -42,11 +42,9 @@ if __name__ == "__main__":
     start_coords = initialization_coord(maze, "S")
     end_coords = initialization_coord(maze, "E")
 
-    for line in maze_launch(maze, start_coords, end_coords):
-        print(line)
+    result = a_star.maze(maze, start_coords, end_coords)
 
-    for i in maze:
-        print(i)
+    print(result)
 
     print(start_coords)
     print(end_coords)

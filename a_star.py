@@ -1,8 +1,8 @@
 import cell
 
 
-def runner_surround(general_maze, current_maze, x, y):
-    """Actualize the current maze of the runner after he movement
+def runner_surround(general_maze, current_maze, x, y, parent_cell_g_cost, end):
+    """Actualize the current maze of the runner after he moves
     Args :
         general_maze : list of list(grid), the main maze of with every case discovered
         current_maze : List of List(integer), with the value associated to each cell.
@@ -12,38 +12,38 @@ def runner_surround(general_maze, current_maze, x, y):
         current_maze : List of List(integer), with the value associated to each cell.
     """
 
-    """if x - 1 >= 0 and y - 1 >= 0:
+    if x - 1 >= 0 and y - 1 >= 0:
         if general_maze[y - 1][x - 1] != "1":
-            current_maze[y - 1][x - 1] = value_of_the_cell(x - 1, y - 1)
+            current_maze[y - 1][x - 1] = cell.Cell([x - 1, y - 1], [x, y], parent_cell_g_cost, end)
 
     if x - 1 >= 0 and y + 1 < len(general_maze):
         if general_maze[y + 1][x - 1] != "1":
-            current_maze[y + 1][x - 1] = value_of_the_cell(x - 1, y + 1)
+            current_maze[y + 1][x - 1] = cell.Cell([x - 1, y + 1], [x, y], parent_cell_g_cost, end)
 
     if x - 1 >= 0:
         if general_maze[y][x - 1] != "1":
-            current_maze[y][x - 1] = value_of_the_cell(x - 1, y)
+            current_maze[y][x - 1] = cell.Cell([x - 1, y], [x, y], parent_cell_g_cost, end)
 
     if x + 1 < len(general_maze[y]) and y - 1 >= 0:
         if general_maze[y - 1][x + 1] != "1":
-            current_maze[y - 1][x + 1] = value_of_the_cell(x + 1, y - 1)
+            current_maze[y - 1][x + 1] = cell.Cell([x + 1, y - 1], [x, y], parent_cell_g_cost, end)
 
     if x + 1 < len(general_maze[y]) and y + 1 < len(general_maze):
         if general_maze[y + 1][x + 1] != "1":
-            current_maze[y + 1][x + 1] = value_of_the_cell(x + 1, y + 1)
+            current_maze[y + 1][x + 1] = cell.Cell([x + 1, y + 1], [x, y], parent_cell_g_cost, end)
 
     if x + 1 < len(general_maze[y]):
         if general_maze[y][x + 1] != "1":
-            current_maze[y][x + 1] = value_of_the_cell(x + 1, y)
+            current_maze[y][x + 1] = cell.Cell([x + 1, y - 1], [x, y], parent_cell_g_cost, end)
 
     if y - 1 >= 0:
         if general_maze[y - 1][x] != "1":
-            current_maze[y - 1][x] = value_of_the_cell(x, y - 1)
+            current_maze[y - 1][x] = cell.Cell([x, y - 1], [x, y], parent_cell_g_cost, end)
 
     if y + 1 < len(general_maze):
         if general_maze[y + 1][x] != "1":
-            current_maze[y + 1][x] = value_of_the_cell(x, y + 1)
-"""
+            current_maze[y + 1][x] = cell.Cell([x, y + 1], [x, y], parent_cell_g_cost, end)
+
     return current_maze
 
 
@@ -68,15 +68,8 @@ def maze_runner_initialization(general_maze):
 def maze(maze_map, start, end):
     current_maze = maze_runner_initialization(maze_map)
 
-    coord = start
+    current_maze = runner_surround(maze_map, current_maze, 2, 3, 10, end)
 
-    coord[0] -= 1
 
-    coord[1] -= 1
-
-    case = cell.Cell(coord, start)
-
-    print(case)
-
-    pass
+    return  current_maze
 

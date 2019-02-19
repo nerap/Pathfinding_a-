@@ -1,5 +1,6 @@
 import cell
-
+from tkinter import *
+import random
 
 def runner_surround(general_maze, current_maze, x, y, parent_cell_g_cost, end):
     """Actualize the current maze of the runner after he moves
@@ -11,6 +12,7 @@ def runner_surround(general_maze, current_maze, x, y, parent_cell_g_cost, end):
     Returns :
         current_maze : List of List(integer), with the value associated to each cell.
     """
+    
 
     if x - 1 >= 0 and y - 1 >= 0:
         if general_maze[y - 1][x - 1] != "1":
@@ -86,19 +88,61 @@ def move_next_cell(curr_maze):
     return coord
 
 
-def maze(maze_map, start, end):
+
+
+def color_case(x, y, color, g, h, f):
+    mon_cadre.create_rectangle(x*30+1,y*30+1,(x+1)*30-1,(y+1)*30-1,fill=color,width=1)
+    mon_cadre.create_text(x*30+15, y*30+10, text=str(f), font="Arial 12", fill="black")
+    mon_cadre.create_text(x*30+15, y*30+22, text=str(g) + " " + str(h), font="Arial 8", fill="black")
+
+def display_map(current_maze):
+    for x_case in range(44):
+        for y_case in range(27):
+            case = current_maze[x_case][y_case]
+            if case != "?":
+                color = "blue"
+                if case.get_discovered() == True:
+                    color = "red"
+                color_case(x_case, y_case, color, case.get_g_cost(), case.get_h_cost(), case.get_f_cost())
+    
+def update():
+    global current_maze, temp, end, start, maze_map
+    if temp[0] != end[0] and temp[1] != end[1]:
+        temp = move_next_cell(current_maze)
+        current_maze[temp[1]][temp[0]].set_discovered(True)
+        current_maze = runner_surround(maze_map, current_maze, temp[0], temp[1], 0, end)
+        
+        display_map(current_maze)
+        #color_case(random.randrange(0, 44), random.randrange(0, 27), "red", 99, 46, 145)
+        fen1.after(1, update)
+    else:
+        return current_maze
+
+def maze(maze_map1, start1, end1):
+    global current_maze, temp, end, start, maze_map
+    maze_map = maze_map1
+    start = start1
+    end = end1
+    
     current_maze = maze_runner_initialization(maze_map)
     temp = []
     temp.append(start[0])
     temp.append(start[1])
 
-    current_maze = runner_surround(maze_map, current_maze, temp[0], temp[1], 0, end)
 
-    while temp[0] != end[0] and temp[1] != end[1]:
-        temp = move_next_cell(current_maze)
-        current_maze[temp[1]][temp[0]].set_discovered(True)
-        current_maze = runner_surround(maze_map, current_maze, temp[0], temp[1], 0, end)
+    current_maze = runner_surround(maze_map, current_maze, temp[0], temp[1], 10, end)
+    
+    
+    fen1.resizable(width=False, height=False)
+    imageFixe=PhotoImage(file='grilleMap.gif')
+    mon_cadre.create_image(0,0,image=imageFixe, anchor=NW)
+    mon_cadre.pack()
 
+    update()
 
-    return current_maze
+    fen1.mainloop()
+    #return current_maze
+    return None
 
+fen1 = Tk()
+mon_cadre = Canvas(fen1,bg='white',height=810,width=1320)

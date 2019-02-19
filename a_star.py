@@ -65,11 +65,40 @@ def maze_runner_initialization(general_maze):
     return run_maze
 
 
+def move_next_cell(curr_maze):
+
+    result = 120020
+    coord = []
+    h_cost = 12301203
+
+    for index_y in range(len(curr_maze)):
+        for index_x in range(len(curr_maze[0])):
+            temp = curr_maze[index_y][index_x]
+            if temp != "?" and temp.get_discovered() != True:
+                if temp.get_f_cost() < result:
+                    coord = [index_x, index_y]
+                    h_cost = temp.get_h_cost()
+                    result = temp.get_f_cost()
+                elif temp.get_f_cost == result and temp.get_h_cost() < h_cost:
+                    coord = [index_x, index_y]
+                    h_cost = temp.get_h_cost()
+                    result = temp.get_f_cost()
+    return coord
+
+
 def maze(maze_map, start, end):
     current_maze = maze_runner_initialization(maze_map)
+    temp = []
+    temp.append(start[0])
+    temp.append(start[1])
 
-    current_maze = runner_surround(maze_map, current_maze, 2, 3, 10, end)
+    current_maze = runner_surround(maze_map, current_maze, temp[0], temp[1], 0, end)
+
+    while temp[0] != end[0] and temp[1] != end[1]:
+        temp = move_next_cell(current_maze)
+        current_maze[temp[1]][temp[0]].set_discovered(True)
+        current_maze = runner_surround(maze_map, current_maze, temp[0], temp[1], 0, end)
 
 
-    return  current_maze
+    return current_maze
 

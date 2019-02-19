@@ -44,7 +44,7 @@ if __name__ == "__main__":
 
     result = a_star.maze(maze, start_coords, end_coords)
 
-    print(result)
+
 
     print(start_coords)
     print(end_coords)

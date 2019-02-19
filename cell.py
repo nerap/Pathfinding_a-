@@ -24,6 +24,12 @@ class Cell:
     def set_h_cost(self, h):
         self.h_cost = h
 
+    def get_discovered(self):
+        return self.discovered
+
+    def set_discovered(self, bool):
+        self.discovered = bool
+
     def get_coord(self):
         return self.coord
 

@@ -12,40 +12,70 @@ def runner_surround(general_maze, current_maze, x, y, parent_cell_g_cost, end):
     Returns :
         current_maze : List of List(integer), with the value associated to each cell.
     """
-    
 
     if x - 1 >= 0 and y - 1 >= 0:
         if general_maze[y - 1][x - 1] != "1":
-            current_maze[y - 1][x - 1] = cell.Cell([x - 1, y - 1], [x, y], parent_cell_g_cost, end)
+            if current_maze[y - 1][x - 1] == "?":
+                current_maze[y - 1][x - 1] = cell.Cell([x - 1, y - 1], [x, y], parent_cell_g_cost, end)
+            else:
+                current_maze[y - 1][x - 1].calcul_g_cost(parent_cell_g_cost)
+                current_maze[y - 1][x - 1].calcul_h_cost(end)
 
     if x - 1 >= 0 and y + 1 < len(general_maze):
         if general_maze[y + 1][x - 1] != "1":
-            current_maze[y + 1][x - 1] = cell.Cell([x - 1, y + 1], [x, y], parent_cell_g_cost, end)
+            if current_maze[y + 1][x - 1] == "?":
+                current_maze[y + 1][x - 1] = cell.Cell([x - 1, y + 1], [x, y], parent_cell_g_cost, end)
+            else:
+                current_maze[y + 1][x - 1].calcul_g_cost(parent_cell_g_cost)
+                current_maze[y + 1][x - 1].calcul_h_cost(end)
 
     if x - 1 >= 0:
         if general_maze[y][x - 1] != "1":
-            current_maze[y][x - 1] = cell.Cell([x - 1, y], [x, y], parent_cell_g_cost, end)
+            if current_maze[y][x - 1] == "?":
+                current_maze[y][x - 1] = cell.Cell([x - 1, y], [x, y], parent_cell_g_cost, end)
+            else:
+                current_maze[y][x - 1].calcul_g_cost(parent_cell_g_cost)
+                current_maze[y][x - 1].calcul_h_cost(end)
 
     if x + 1 < len(general_maze[y]) and y - 1 >= 0:
         if general_maze[y - 1][x + 1] != "1":
-            current_maze[y - 1][x + 1] = cell.Cell([x + 1, y - 1], [x, y], parent_cell_g_cost, end)
+            if current_maze[y - 1][x + 1] == "?":
+                current_maze[y - 1][x + 1] = cell.Cell([x + 1, y], [x, y], parent_cell_g_cost, end)
+            else:
+                current_maze[y - 1][x + 1].calcul_g_cost(parent_cell_g_cost)
+                current_maze[y - 1][x + 1].calcul_h_cost(end)
 
     if x + 1 < len(general_maze[y]) and y + 1 < len(general_maze):
         if general_maze[y + 1][x + 1] != "1":
-            current_maze[y + 1][x + 1] = cell.Cell([x + 1, y + 1], [x, y], parent_cell_g_cost, end)
+            if current_maze[y + 1][x + 1] == "?":
+                current_maze[y + 1][x + 1] = cell.Cell([x + 1, y + 1], [x, y], parent_cell_g_cost, end)
+            else:
+                current_maze[y + 1][x + 1].calcul_g_cost(parent_cell_g_cost)
+                current_maze[y + 1][x + 1].calcul_h_cost(end)
 
     if x + 1 < len(general_maze[y]):
         if general_maze[y][x + 1] != "1":
-            current_maze[y][x + 1] = cell.Cell([x + 1, y - 1], [x, y], parent_cell_g_cost, end)
+            if current_maze[y][x + 1] == "?":
+                current_maze[y][x + 1] = cell.Cell([x + 1, y], [x, y], parent_cell_g_cost, end)
+            else:
+                current_maze[y][x + 1].calcul_g_cost(parent_cell_g_cost)
+                current_maze[y][x + 1].calcul_h_cost(end)
 
     if y - 1 >= 0:
         if general_maze[y - 1][x] != "1":
-            current_maze[y - 1][x] = cell.Cell([x, y - 1], [x, y], parent_cell_g_cost, end)
+            if current_maze[y - 1][x] == "?":
+                current_maze[y - 1][x] = cell.Cell([x, y - 1], [x, y], parent_cell_g_cost, end)
+            else:
+                current_maze[y - 1][x].calcul_g_cost(parent_cell_g_cost)
+                current_maze[y - 1][x].calcul_h_cost(end)
 
     if y + 1 < len(general_maze):
         if general_maze[y + 1][x] != "1":
-            current_maze[y + 1][x] = cell.Cell([x, y + 1], [x, y], parent_cell_g_cost, end)
-
+            if current_maze[y + 1][x] == "?":
+                current_maze[y + 1][x] = cell.Cell([x, y + 1], [x, y], parent_cell_g_cost, end)
+            else:
+                current_maze[y + 1][x].calcul_g_cost(parent_cell_g_cost)
+                current_maze[y + 1][x].calcul_h_cost(end)
     return current_maze
 
 

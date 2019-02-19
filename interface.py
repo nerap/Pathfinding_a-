@@ -1,9 +1,10 @@
 from tkinter import *
 import random
-import time
 
 def color_case(x, y, color):
     mon_cadre.create_rectangle(x*30+1,y*30+1,(x+1)*30-1,(y+1)*30-1,fill=color,width=1)
+    mon_cadre.create_text(x*30+15, y*30+10, text="145", font="Arial 12", fill="black")
+    mon_cadre.create_text(x*30+15, y*30+22, text="46 99", font="Arial 8", fill="black")
 
 def clic(event):
     update()

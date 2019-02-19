@@ -1,4 +1,8 @@
 import json
+import random
+import getCoords
+import a_star
+import cell
 
 
 def initialization_coord(general_maze, char):
@@ -24,18 +28,24 @@ def maze_launch(current_maze, start, end):
     Returns :
         maze_pathed : The maze with the path to the end
     """
-    path_maze = []
-    return path_maze
+
+    pass
 
 
 if __name__ == "__main__":
 
-    with open('./Grid/grid.json') as grid:
-        maze = json.load(grid)
+    maze = getCoords.read_json("./Grid/grid.json")
+
+    maze[random.randint(0, len(maze) - 1)][random.randint(0, len(maze[0]) - 1)] = "S"
+    maze[random.randint(0, len(maze) - 1)][random.randint(0, len(maze[0]) - 1)] = "E"
 
     start_coords = initialization_coord(maze, "S")
     end_coords = initialization_coord(maze, "E")
 
-    for line in maze_launch(maze, start_coords, end_coords):
-        print(line)
+    result = a_star.maze(maze, start_coords, end_coords)
+
+
+
+    print(start_coords)
+    print(end_coords)
     pass

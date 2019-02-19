@@ -1,6 +1,8 @@
 import json
 import random
 import getCoords
+import a_star
+import cell
 
 
 def initialization_coord(general_maze, char):

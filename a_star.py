@@ -12,82 +12,101 @@ def runner_surround(general_maze, current_maze, x, y, parent_cell_g_cost, end):
     Returns :
         current_maze : List of List(integer), with the value associated to each cell.
     """
+    global start
 
     if x - 1 >= 0 and y - 1 >= 0:
         if general_maze[x - 1][y - 1] != 1:
             if general_maze[x - 1][y] != 1 or general_maze[x][y - 1] != 1:
                 if current_maze[x - 1][y - 1] == "?":
-                    current_maze[x - 1][y - 1] = cell.Cell([x - 1, y - 1], [x, y], parent_cell_g_cost, end)
+                    current_maze[x - 1][y - 1] = cell.Cell([x - 1, y - 1], [x, y], start, end)
                 elif current_maze[x - 1][y - 1].get_discovered() == False:
-                    current_maze[x - 1][y - 1].calcul_g_cost(parent_cell_g_cost)
+                    current_maze[x - 1][y - 1].calcul_g_cost(start)
                     current_maze[x - 1][y - 1].calcul_h_cost(end)
 
     if x + 1 < len(general_maze) and y - 1 >= 0:
         if general_maze[x + 1][y - 1] != 1:
             if general_maze[x + 1][y] != 1 or general_maze[x][y - 1] != 1:
                 if current_maze[x + 1][y - 1] == "?":
-                    current_maze[x + 1][y - 1] = cell.Cell([x + 1, y - 1], [x, y], parent_cell_g_cost, end)
+                    current_maze[x + 1][y - 1] = cell.Cell([x + 1, y - 1], [x, y], start, end)
                 elif current_maze[x + 1][y - 1].get_discovered() == False:
-                    current_maze[x + 1][y - 1].calcul_g_cost(parent_cell_g_cost)
+                    current_maze[x + 1][y - 1].calcul_g_cost(start)
                     current_maze[x + 1][y - 1].calcul_h_cost(end)
 
     if y - 1 >= 0:
         if general_maze[x][y - 1] != 1:
             if current_maze[x][y - 1] == "?":
-                current_maze[x][y - 1] = cell.Cell([x, y - 1], [x, y], parent_cell_g_cost, end)
+                current_maze[x][y - 1] = cell.Cell([x, y - 1], [x, y], start, end)
             elif current_maze[x][y - 1].get_discovered() == False:
-                current_maze[x][y - 1].calcul_g_cost(parent_cell_g_cost)
+                current_maze[x][y - 1].calcul_g_cost(start)
                 current_maze[x][y - 1].calcul_h_cost(end)
 
     if x - 1 >= 0 and y + 1 < len(general_maze[x]):
         if general_maze[x - 1][y + 1] != 1:
             if general_maze[x - 1][y] != 1 or general_maze[x][y + 1] != 1:
                 if current_maze[x - 1][y + 1] == "?":
-                    current_maze[x - 1][y + 1] = cell.Cell([x - 1, y + 1], [x, y], parent_cell_g_cost, end)
+                    current_maze[x - 1][y + 1] = cell.Cell([x - 1, y + 1], [x, y], start, end)
                 elif current_maze[x - 1][y + 1].get_discovered() == False:
-                    current_maze[x - 1][y + 1].calcul_g_cost(parent_cell_g_cost)
+                    current_maze[x - 1][y + 1].calcul_g_cost(start)
                     current_maze[x - 1][y + 1].calcul_h_cost(end)
 
     if x + 1 < len(general_maze) and y + 1 < len(general_maze[x]):
         if general_maze[x + 1][y + 1] != 1:
             if general_maze[x + 1][y] != 1 or general_maze[x][y + 1] != 1:
                 if current_maze[x + 1][y + 1] == "?":
-                    current_maze[x + 1][y + 1] = cell.Cell([x + 1, y + 1], [x, y], parent_cell_g_cost, end)
+                    current_maze[x + 1][y + 1] = cell.Cell([x + 1, y + 1], [x, y], start, end)
                 elif current_maze[x + 1][y + 1].get_discovered() == False:
-                    current_maze[x + 1][y + 1].calcul_g_cost(parent_cell_g_cost)
+                    current_maze[x + 1][y + 1].calcul_g_cost(start)
                     current_maze[x + 1][y + 1].calcul_h_cost(end)
 
     if y + 1 < len(general_maze[x]):
         if general_maze[x][y + 1] != 1:
             if current_maze[x][y + 1] == "?":
-                current_maze[x][y + 1] = cell.Cell([x, y + 1], [x, y], parent_cell_g_cost, end)
+                current_maze[x][y + 1] = cell.Cell([x, y + 1], [x, y], start, end)
             elif current_maze[x][y + 1].get_discovered() == False:
-                current_maze[x][y + 1].calcul_g_cost(parent_cell_g_cost)
+                current_maze[x][y + 1].calcul_g_cost(start)
                 current_maze[x][y + 1].calcul_h_cost(end)
 
     if x - 1 >= 0:
         if general_maze[x - 1][y] != 1:
             if current_maze[x - 1][y] == "?":
-                current_maze[x - 1][y] = cell.Cell([x - 1, y], [x, y], parent_cell_g_cost, end)
+                current_maze[x - 1][y] = cell.Cell([x - 1, y], [x, y], start, end)
             elif current_maze[x - 1][y].get_discovered() == False:
-                current_maze[x - 1][y].calcul_g_cost(parent_cell_g_cost)
+                current_maze[x - 1][y].calcul_g_cost(start)
                 current_maze[x - 1][y].calcul_h_cost(end)
 
     if x + 1 < len(general_maze):
         if general_maze[x + 1][y] != 1:
             if current_maze[x + 1][y] == "?":
-                current_maze[x + 1][y] = cell.Cell([x + 1, y], [x, y], parent_cell_g_cost, end)
+                current_maze[x + 1][y] = cell.Cell([x + 1, y], [x, y], start, end)
             elif current_maze[x + 1][y].get_discovered() == False:
-                current_maze[x + 1][y].calcul_g_cost(parent_cell_g_cost)
+                current_maze[x + 1][y].calcul_g_cost(start)
                 current_maze[x + 1][y].calcul_h_cost(end)
     return current_maze
 
 
 def display_retour(general_maze, current_maze, start, end):
-    x = end[0]
-    y = end[1]
-    while x != start[0] or y != start[1]:
+    
+    enfant = current_maze[end[0]][end[1]]
+    compteur = 0
+    
+    while enfant.get_coord()[0] != start[0] or enfant.get_coord()[1] != start[1]:
         
+        compteur += 1
+        if compteur > 1000:
+            break
+        
+        coords_parent = enfant.get_coord_parent()
+        parent = current_maze[coords_parent[0]][coords_parent[1]]
+        mon_cadre.create_line(enfant.get_coord()[0]*30+15,enfant.get_coord()[1]*30+15,parent.get_coord()[0]*30+15,parent.get_coord()[1]*30+15,width=3,fill='black')
+        enfant = parent
+        
+    """x = end[0]
+    y = end[1]
+    compteur = 0
+    while x != start[0] or y != start[1]:
+        compteur += 1
+        if compteur > 1000:
+            break
         min_g = 1000000
         case = current_maze[x][y]
         if x - 1 >= 0 and y - 1 >= 0:
@@ -171,9 +190,9 @@ def display_retour(general_maze, current_maze, start, end):
                             case = current_maze[x + 1][y]
                             
                             
-        mon_cadre.create_line(x*30+15,y*30+15,case.get_coord()[0]*30+15,case.get_coord()[1]*30+15,width=4,fill='black')
+        mon_cadre.create_line(x*30+15,y*30+15,case.get_coord()[0]*30+15,case.get_coord()[1]*30+15,width=3,fill='black')
         x = case.get_coord()[0]
-        y = case.get_coord()[1]
+        y = case.get_coord()[1]"""
 
 def maze_runner_initialization(general_maze):
     """Initialize the maze as the runner point of view
@@ -246,7 +265,7 @@ def display_mur(maze_map):
 def update():
     global current_maze, temp, end, start, maze_map
     if temp[0] != end[0] or temp[1] != end[1]:
-        for loop in range(20):
+        for loop in range(10):
             if temp[0] != end[0] or temp[1] != end[1]:
                 temp = move_next_cell(current_maze)
                 current_maze[temp[0]][temp[1]].set_discovered(True)
@@ -275,10 +294,10 @@ def maze(maze_map1, start1, end1):
     temp.append(start[0])
     temp.append(start[1])
 
-    current_maze[temp[0]][temp[1]] = cell.Cell([temp[0], temp[1]], [temp[0], temp[1]], 0, end)
+    current_maze[temp[0]][temp[1]] = cell.Cell([temp[0], temp[1]], [temp[0], temp[1]], start, end)
     current_maze[temp[0]][temp[1]].set_discovered(True)
     current_maze[temp[0]][temp[1]].set_g_cost(0)
-    current_maze = runner_surround(maze_map, current_maze, temp[0], temp[1], 0, end)
+    current_maze = runner_surround(maze_map, current_maze, temp[0], temp[1], start, end)
     
     
     fen1.resizable(width=False, height=False)

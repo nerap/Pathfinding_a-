@@ -42,11 +42,9 @@ class Cell:
     def get_coord_parent(self):
         return self.coord_parent
 
-    def calcul_g_cost(self, parent_cell_g_cost):
-        if self.get_coord_parent()[0] != self.get_coord()[0] and self.get_coord_parent()[1] != self.get_coord()[1]:
-            self.set_g_cost(parent_cell_g_cost + 14)
-        else:
-            self.set_g_cost(parent_cell_g_cost + 10)
+    def calcul_g_cost(self, start):
+        self.set_g_cost(int(math.sqrt(((start[1] - self.get_coord()[1]) ** 2) + ((start[0] - self.get_coord()[0]) ** 2))*10))
+
 
     def calcul_h_cost(self, end):
-        self.set_h_cost(int(math.sqrt(((end[1] - self.get_coord()[1]) ** 2) + ((end[0] - self.get_coord()[0]) ** 2)))*10)
+        self.set_h_cost(int(math.sqrt(((end[1] - self.get_coord()[1]) ** 2) + ((end[0] - self.get_coord()[0]) ** 2))*10))

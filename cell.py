@@ -23,6 +23,12 @@ class Cell:
 
     def set_h_cost(self, h):
         self.h_cost = h
+        
+    def get_printed(self):
+        return self.printed
+
+    def set_printed(self, p):
+        self.printed = p
 
     def get_discovered(self):
         return self.discovered
@@ -43,4 +49,4 @@ class Cell:
             self.set_g_cost(parent_cell_g_cost + 10)
 
     def calcul_h_cost(self, end):
-        self.set_h_cost(int(math.sqrt(((end[1] - self.get_coord()[1]) ** 2) + ((end[0] - self.get_coord()[0]) ** 2))))
+        self.set_h_cost(int(math.sqrt(((end[1] - self.get_coord()[1]) ** 2) + ((end[0] - self.get_coord()[0]) ** 2)))*10)

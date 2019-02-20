@@ -13,9 +13,9 @@ def initialization_coord(general_maze, char):
     Return :
         A list with x and y as int
     """
-    for index_y in range(len(general_maze)):
-        for index_x in range(len(general_maze[0])):
-            if general_maze[index_y][index_x] == char:
+    for index_x in range(len(general_maze)):
+        for index_y in range(len(general_maze[0])):
+            if general_maze[index_x][index_y] == char:
                 return [int(index_x), int(index_y)]
 
 
@@ -36,16 +36,15 @@ if __name__ == "__main__":
 
     maze = getCoords.read_json("./Grid/grid.json")
 
-    maze[0][0] = "S"
-    maze[20][30] = "E"
+    maze[22][13] = "S"
+    maze[0][0] = "E"
 
     start_coords = initialization_coord(maze, "S")
     end_coords = initialization_coord(maze, "E")
 
-    result = a_star.maze(maze, start_coords, end_coords)
-
-
-
     print(start_coords)
     print(end_coords)
+    
+    result = a_star.maze(maze, start_coords, end_coords)
+
     pass
